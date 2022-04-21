@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import "./App.css";
+import ListUsers from "./components/organismos/ListUsers/index";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CreateUser from "./components/organismos/CreateUser/index";
+import EditUser from "./components/organismos/EditUser/index";
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className="max-w-screen-md mx-auto pt-20">
+      <Routes>
+        <Route path="/create" element={<CreateUser/>} />
+        <Route path="/" element={<ListUsers/>} />
+        <Route path="/edit/:id" element={<EditUser/>} />
+      </Routes>
     </div>
+  </BrowserRouter>
   );
-}
+};
 
 export default App;

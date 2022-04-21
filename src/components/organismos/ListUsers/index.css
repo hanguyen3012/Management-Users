@@ -1,0 +1,18 @@
+table {
+    border-collapse: collapse;
+    width: 80%;
+    margin: 10%;
+    border: solid rgb(101, 129, 230) 1px;
+  }
+  .title {
+    background-color: aqua;
+  }
+  th,
+  td {
+    text-align: left;
+    padding: 8px;
+  }
+  .btn-action{
+    display: flex;
+    justify-content: space-around;
+  }
