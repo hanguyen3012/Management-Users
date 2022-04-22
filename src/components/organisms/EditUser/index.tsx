@@ -1,8 +1,8 @@
 import Input from "../../atoms/Input/input";
 import Button from "../../atoms/Button/button";
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate, Link} from "react-router-dom";
-// import "./index.css";
+import { useParams, useNavigate, Link } from "react-router-dom";
+import "./index.css";
 import axios from "axios";
 export interface IValues {
   id: string;
@@ -14,7 +14,6 @@ export interface IValues {
 }
 const EditUser = (props: any) => {
   const [data, setData] = useState({} as IValues);
-  const [error, setError] = useState("");
 
   const { id } = useParams();
   let navigate = useNavigate();
@@ -39,15 +38,17 @@ const EditUser = (props: any) => {
 
   const handleSubmit = async (event: any) => {
     event.persist();
-  try{
-    console.log("submit", data);
-    await axios
-      .put(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id, data)
-      .then((data) => {
-        navigate("/");
-      });
-    } catch (error){
-      console.log(error)
+    try {
+      await axios
+        .put(
+          `https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id,
+          data
+        )
+        .then((data) => {
+          navigate("/");
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -63,12 +64,6 @@ const EditUser = (props: any) => {
             defaultValues={data.username}
             onChange={handleChange}
           />
-          {error !== "" ?( <div
-                    style={{ fontFamily: "roboto" }}
-                    className="error text-danger text-center"
-                  >
-                    {error}
-                  </div>):("")}
         </div>
         <div className="form-group">
           <Input
@@ -107,8 +102,15 @@ const EditUser = (props: any) => {
           />
         </div>
         <div className="form-btn">
-        <Link to={`/`}> <Button button="Cancel" className ="btn-cancel"  /></Link>
-          <Button className="btn-submit" button="Submit" onSubmitFormLogin={handleSubmit} />
+          <Link to={`/`}>
+            {" "}
+            <Button button="Cancel" className="btn-cancel" />
+          </Link>
+          <Button
+            className="btn-submit"
+            button="Submit"
+            onSubmitFormLogin={handleSubmit}
+          />
         </div>
       </div>
     </div>

@@ -70,3 +70,9 @@
   .invalid-feedback {
     color: red;
   }
+  td {
+    white-space: nowrap; 
+    width: 100px; 
+    overflow: hidden;
+    border: 1px solid #000000;
+ }
