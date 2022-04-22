@@ -14,6 +14,8 @@ export interface IValues {
 }
 const EditUser = (props: any) => {
   const [data, setData] = useState({} as IValues);
+  const [error, setError] = useState("");
+
   const { id } = useParams();
   let navigate = useNavigate();
 
@@ -29,22 +31,24 @@ const EditUser = (props: any) => {
   }, []);
   const handleChange = (event: any) => {
     event.persist();
-    console.log(data);
     setData((data) => ({
       ...data,
       [event.target.name]: event.target.value,
     }));
-    console.log("ha", data);
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = async (event: any) => {
     event.persist();
+  try{
     console.log("submit", data);
-    axios
+    await axios
       .put(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id, data)
       .then((data) => {
         navigate("/");
       });
+    } catch (error){
+      console.log(error)
+    }
   };
   return (
     <div className="container">
@@ -59,6 +63,12 @@ const EditUser = (props: any) => {
             defaultValues={data.username}
             onChange={handleChange}
           />
+          {error !== "" ?( <div
+                    style={{ fontFamily: "roboto" }}
+                    className="error text-danger text-center"
+                  >
+                    {error}
+                  </div>):("")}
         </div>
         <div className="form-group">
           <Input
