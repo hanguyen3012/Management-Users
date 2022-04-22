@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
 
 const Input = (props:any) => {
 
@@ -11,7 +10,7 @@ const Input = (props:any) => {
                 placeholder={props.placeholder}
                 className={'${props.className}'}
                 defaultValue={props.defaultValues}
-                onChange={props.onChange}/>          
+                onChange={props.onChange}/>        
         </div>
     )
 }

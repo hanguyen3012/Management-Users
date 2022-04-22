@@ -1,8 +1,8 @@
-import Input from "../../atoms/Input/input";
-import Button from "../../atoms/Button/button";
+import Input from "../../atoms/Input";
+import Button from "../../atoms/Button";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import "./index.css";
+// import "./index.css";
 import axios from "axios";
 export interface IValues {
   id: string;
@@ -28,6 +28,7 @@ const EditUser = (props: any) => {
   useEffect(() => {
     getUsers();
   }, []);
+
   const handleChange = (event: any) => {
     event.persist();
     setData((data) => ({
@@ -43,8 +44,7 @@ const EditUser = (props: any) => {
         .put(
           `https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id,
           data
-        )
-        .then((data) => {
+        ).then((data) => {
           navigate("/");
         });
     } catch (error) {
@@ -61,7 +61,7 @@ const EditUser = (props: any) => {
             type="text"
             name="username"
             placeholder="Enter username"
-            defaultValues={data.username}
+            defaultValue={data.username}
             onChange={handleChange}
           />
         </div>
@@ -70,7 +70,7 @@ const EditUser = (props: any) => {
             type="text"
             name="address"
             placeholder="Enter address"
-            defaultValues={data.address}
+            defaultValue={data.address}
             onChange={handleChange}
           />
         </div>
@@ -79,7 +79,7 @@ const EditUser = (props: any) => {
             type="date"
             name="birthday"
             placeholder="Enter birthday"
-            defaultValues={data.birthday}
+            defaultValue={data.birthday}
             onChange={handleChange}
           />
         </div>
@@ -88,7 +88,7 @@ const EditUser = (props: any) => {
             type="email"
             name="email"
             placeholder="Enter email"
-            defaultValues={data.email}
+            defaultValue={data.email}
             onChange={handleChange}
           />
         </div>
@@ -97,7 +97,7 @@ const EditUser = (props: any) => {
             type="text"
             name="phone"
             placeholder="Enter phone number"
-            defaultValues={data.phone}
+            defaultValue={data.phone}
             onChange={handleChange}
           />
         </div>

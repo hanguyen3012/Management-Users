@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./index.css";
-import Button from "../../atoms/Button/button";
+import Button from "../../atoms/Button";
 import RowTitle from "../../molecules/UserRow/RowTitle";
-import Anchor from "../../atoms/Anchor/anchor";
-import { Link } from 'react-router-dom';
+import Anchor from "../../atoms/Anchor";
+import { Link } from "react-router-dom";
 export interface Values {
   id: number;
   username: string;
@@ -22,23 +22,25 @@ const Table = (props: any) => {
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users"
     );
     setData(users.data);
-    console.log(users.data);
   };
 
   useEffect(() => {
     getUsers();
   }, []);
 
-  const deleteUser = async (e: any, id: number)=>{
+  const deleteUser = async (e: any, id: number) => {
     e.persist();
-    console.log(id)
-    await axios.delete("https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id).then(data_ => {
-      getUsers();
-  })
-  }
+    await axios
+      .delete("https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id)
+      .then((data_) => {
+        getUsers();
+      });
+  };
   return (
     <div>
-     <button className ="btn-add" style={{width:"100px"}}><Anchor href={props.href} text = {props.text}/></button>
+      <button className="btn-add">
+        <Anchor href="./create" text="Create User" />
+      </button>
       <table>
         <thead>
           <RowTitle />
@@ -53,8 +55,14 @@ const Table = (props: any) => {
               <td>{item.phone}</td>
               <td>{item.email}</td>
               <td className="btn-action">
-                <Link to={`edit/${item.id}`}><button className="btn-edit">Edit</button></Link>
-                <Button className="btn-delete" button = "Delete" onSubmitFormLogin={e => deleteUser(e, item.id)} />
+                <Link to={`edit/${item.id}`}>
+                  <button className="btn-edit">Edit</button>
+                </Link>
+                <Button
+                  className="btn-delete"
+                  button="Delete"
+                  onSubmitFormLogin={(e) => deleteUser(e, item.id)}
+                />
               </td>
             </tr>
           ))}
@@ -62,17 +70,6 @@ const Table = (props: any) => {
       </table>
     </div>
   );
-};
-Table.propTypes = {
-  Text: PropTypes.string,
-  href: PropTypes.string
-  
-};
-
-Table.defaultProps = {
-  className: "title",
-  text: "Create User",
-  href: "./create"
 };
 
 export default Table;
