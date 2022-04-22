@@ -1,8 +1,8 @@
 import "./App.css";
-import ListUsers from "./components/organismos/ListUsers/index";
+import ListUsers from "./components/organisms/ListUsers/index";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CreateUser from "./components/organismos/CreateUser/index";
-import EditUser from "./components/organismos/EditUser/index";
+import CreateUser from "./components/organisms/CreateUser/index";
+import EditUser from "./components/organisms/EditUser/index";
 const App: React.FC = () => {
   return (
     <BrowserRouter>

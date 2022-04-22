@@ -38,7 +38,7 @@ const Table = (props: any) => {
   }
   return (
     <div>
-     <Anchor href={props.href} text = {props.text}/>
+     <button className ="btn-add" style={{width:"100px"}}><Anchor href={props.href} text = {props.text}/></button>
       <table>
         <thead>
           <RowTitle />
@@ -53,8 +53,8 @@ const Table = (props: any) => {
               <td>{item.phone}</td>
               <td>{item.email}</td>
               <td className="btn-action">
-                <Link to={`edit/${item.id}`}><button>Edit</button></Link>
-                <Button button = "Delete" onSubmitFormLogin={e => deleteUser(e, item.id)} />
+                <Link to={`edit/${item.id}`}><button className="btn-edit">Edit</button></Link>
+                <Button className="btn-delete" button = "Delete" onSubmitFormLogin={e => deleteUser(e, item.id)} />
               </td>
             </tr>
           ))}

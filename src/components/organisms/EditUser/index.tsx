@@ -71,7 +71,7 @@ const EditUser = (props: any) => {
         </div>
         <div className="form-group">
           <Input
-            type="text"
+            type="date"
             name="birthday"
             placeholder="Enter birthday"
             defaultValues={data.birthday}
@@ -80,7 +80,7 @@ const EditUser = (props: any) => {
         </div>
         <div className="form-group">
           <Input
-            type="text"
+            type="email"
             name="email"
             placeholder="Enter email"
             defaultValues={data.email}
