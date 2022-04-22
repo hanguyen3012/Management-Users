@@ -34,13 +34,23 @@
     display: flex;
     justify-content: space-around;
   }
+
   .btn-cancel {
     background: rgb(120, 117, 117);
-    width: 60px;
+    height: 30px;
     color: #fff;
     border-radius: 3px;
     border: none;
     font-size: 15px;
+    padding: 7px;
+  }
+  .btn-submit{
+    padding: 7px;
+    height: 30px;
+    background: rgb(44, 83, 152);
+    border-radius: 3px;
+    border: none;
+    color: #fff;
   }
   .btn-cancel:hover {
     background: rgb(77, 77, 77);

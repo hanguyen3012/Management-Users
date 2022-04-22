@@ -1,7 +1,7 @@
 import Input from "../../atoms/Input/input";
 import Button from "../../atoms/Button/button";
 import React, {  useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./index.css";
 import axios from "axios";
 export interface IValues {
@@ -101,9 +101,8 @@ const CreateUser: React.FC = () => {
             />
           </div>
           <div className="form-btn">
-            {/* <Button button="Cancel" className ="btn-cancel" onSubmitFormLogin={handleSubmit} /> */}
-            {/* <Button button="Submit" onSubmitFormLogin={e => handleSubmit(e)} /> */}
-            <button onClick={handleSubmit} >submit</button>
+          <Link to={`/`}> <Button button="Cancel" className ="btn-cancel"  /></Link>
+            <Button className="btn-submit" button="Submit" onSubmitFormLogin={e => handleSubmit(e)} />
           </div>
       
       </div>
