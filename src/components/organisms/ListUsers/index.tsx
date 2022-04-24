@@ -39,7 +39,7 @@ const Table = (props: any) => {
   return (
     <div>
       <button className="btn-add">
-        <Anchor href="./create" text="Create User" />
+        <Anchor href="./create" text="Add" />
       </button>
       <table>
         <thead>

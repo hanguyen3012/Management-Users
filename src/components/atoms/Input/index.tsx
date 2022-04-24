@@ -8,8 +8,8 @@ const Input = (props:any) => {
                 type={props.type}
                 name={props.name}
                 placeholder={props.placeholder}
-                className={'${props.className}'}
-                defaultValue={props.defaultValues}
+                className={props.className}
+                defaultValue={props.defaultValue}
                 onChange={props.onChange}/>        
         </div>
     )
@@ -21,7 +21,6 @@ Input.propTypes = {
     placeholder: PropTypes.string,
     className: PropTypes.string,
     onChange: PropTypes.func,
-    defaultValues: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
@@ -29,7 +28,6 @@ Input.defaultProps = {
     placeholder: '',
     name: '',
     className: '',
-    defaultValues: '',
     onChange: '',
     defaultValue: '',
 };

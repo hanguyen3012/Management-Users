@@ -1,7 +1,8 @@
 table {
     border-collapse: collapse;
-    width: 80%;
-    margin: 10%;
+    width: 50vw;
+    margin-left: 20%;
+    margin-top: 5%;
     border: solid rgb(101, 129, 230) 1px;
   }
   .title {
@@ -10,7 +11,7 @@ table {
   th,
   td {
     text-align: left;
-    padding: 8px;
+    padding: 3px;
   }
   .btn-action{
     display: flex;
@@ -18,8 +19,6 @@ table {
   }
   .btn-add {
     background: rgb(36, 153, 57);
-    padding: 7px;
-    width: 100px;
     color: #fff;
     border-radius: 3px;
     border: none;

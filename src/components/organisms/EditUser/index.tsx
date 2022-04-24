@@ -44,7 +44,8 @@ const EditUser = (props: any) => {
         .put(
           `https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id,
           data
-        ).then((data) => {
+        )
+        .then((data) => {
           navigate("/");
         });
     } catch (error) {
