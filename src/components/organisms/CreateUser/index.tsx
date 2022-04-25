@@ -5,29 +5,31 @@ import { useNavigate, Link } from "react-router-dom";
 import userSchema from "../../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { IValues } from "../../../shared/constants";
-import axios from "axios";
-import "./index.css";
 
-const defaultValues: IValues = {
-  id: "",
-  username: "",
-  birthday: "",
-  email: "",
-  phone: "",
-  address: "",
-};
+import "./index.css";
+import axios from "axios";
+export interface IValues {
+  id: string;
+  username: string;
+  birthday: string;
+  email: string;
+  phone: string;
+  address: string;
+}
 
 const CreateUser: React.FC = () => {
-  const [data, setData] = useState(defaultValues as IValues);
+  const [data, setData] = useState({} as IValues);
 
   let navigate = useNavigate();
-  const handleChange = async (event: any) => {
+  const handleChange = (event: any) => {
     event.persist();
+// \\
+console.log(event.target.value)
     setData((data) => ({
       ...data,
       [event.target.name]: event.target.value,
     }));
+    console.log(data)
   };
 
   const {
@@ -44,7 +46,6 @@ const CreateUser: React.FC = () => {
       .post(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users`, data)
       .then((data) => [navigate("/")]);
   };
-
   return (
     <div className="container">
       <div className="add-form">
@@ -52,7 +53,7 @@ const CreateUser: React.FC = () => {
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               placeholder="Enter username"
               {...register("username")}
@@ -63,7 +64,7 @@ const CreateUser: React.FC = () => {
             <div className="invalid-feedback">{errors.username?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               {...register("address")}
               placeholder="Enter address"
@@ -74,7 +75,7 @@ const CreateUser: React.FC = () => {
             <div className="invalid-feedback">{errors.address?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="date"
               {...register("birthday")}
               placeholder="Enter birthday"
@@ -85,7 +86,7 @@ const CreateUser: React.FC = () => {
             <div className="invalid-feedback">{errors.birthday?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="email"
               {...register("email")}
               placeholder="Enter email"
@@ -96,7 +97,7 @@ const CreateUser: React.FC = () => {
             <div className="invalid-feedback">{errors.email?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               {...register("phone")}
               placeholder="Enter phone number"
@@ -107,8 +108,7 @@ const CreateUser: React.FC = () => {
             <div className="invalid-feedback">{errors.phone?.message}</div>
           </div>
           <div className="form-btn">
-            <Link to={`/`}>
-              {" "}
+            <Link to={`/list`}>
               <Button
                 button="Reset"
                 className="btn-cancel"

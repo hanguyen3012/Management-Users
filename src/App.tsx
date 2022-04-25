@@ -9,9 +9,9 @@ const App: React.FC = () => {
     <BrowserRouter>
     <div className="max-w-screen-md mx-auto pt-20">
       <Routes>
-        <Route path="/login" element={<Login/>}></Route>
+        <Route path="/list" element={<ListUsers/>}></Route>
         <Route path="/create" element={<CreateUser/>} />
-        <Route path="/" element={<ListUsers/>} />
+        <Route path="/" element={<Login/>} />
         <Route path="/edit/:id" element={<EditUser/>} />
       </Routes>
     </div>
