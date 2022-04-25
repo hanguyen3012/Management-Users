@@ -5,17 +5,10 @@ import { useNavigate, Link } from "react-router-dom";
 import userSchema from "../../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
+import { IValues } from "../../../shared/constants";
 
 import "./index.css";
 import axios from "axios";
-export interface IValues {
-  id: string;
-  username: string;
-  birthday: string;
-  email: string;
-  phone: string;
-  address: string;
-}
 
 const CreateUser: React.FC = () => {
   const [data, setData] = useState({} as IValues);
@@ -23,13 +16,10 @@ const CreateUser: React.FC = () => {
   let navigate = useNavigate();
   const handleChange = (event: any) => {
     event.persist();
-// \\
-console.log(event.target.value)
     setData((data) => ({
       ...data,
       [event.target.name]: event.target.value,
     }));
-    console.log(data)
   };
 
   const {
@@ -41,7 +31,7 @@ console.log(event.target.value)
     resolver: yupResolver(userSchema),
   });
 
-  const onSubmit = async(data: IValues) => {
+  const onSubmit = async (data: IValues) => {
     await axios
       .post(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users`, data)
       .then((data) => [navigate("/")]);

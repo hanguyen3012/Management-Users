@@ -6,16 +6,10 @@ import Button from "../../atoms/Button";
 import RowTitle from "../../molecules/UserRow/RowTitle";
 import Anchor from "../../atoms/Anchor";
 import { Link } from "react-router-dom";
-export interface Values {
-  id: number;
-  username: string;
-  birthday: string;
-  email: string;
-  phone: number;
-  address: string;
-}
+import { IValues } from "../../../shared/constants";
+
 const Table = (props: any) => {
-  const [data, setData] = useState([] as Values[]);
+  const [data, setData] = useState([] as IValues[]);
 
   const getUsers = async () => {
     const users = await axios.get(

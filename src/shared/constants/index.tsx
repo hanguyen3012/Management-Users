@@ -1,8 +1,9 @@
 export interface IValues {
-    id: string;
+    id: number;
     username: string;
     birthday: string;
     email: string;
     phone: string;
     address: string;
   }
+  

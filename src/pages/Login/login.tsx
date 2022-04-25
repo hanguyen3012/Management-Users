@@ -13,6 +13,7 @@ export interface IValues {
 }
 const Login: React.FC = () => {
   const [data, setData] = useState({} as IValues);
+  const [data1, setData1] = useState({} as IValues);
   const navigate = useNavigate();
   const handleChange = (event: any) => {
     event.persist();
@@ -21,7 +22,6 @@ const Login: React.FC = () => {
       ...data,
       [event.target.name]: event.target.value,
     }));
-    // console.log(data);
   };
 
   const {
@@ -37,7 +37,7 @@ const Login: React.FC = () => {
     const users = await axios.get(
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/account"
     );
-    setData(users.data);
+    setData1(users.data);
   };
 
   useEffect(() => {
@@ -45,9 +45,7 @@ const Login: React.FC = () => {
   }, []);
 
   const onSubmit = async (value: IValues) => {
-
-    // console.log(data.email);
-    // navigate("/");
+    navigate("/list");
   };
   return (
     <div className="app">

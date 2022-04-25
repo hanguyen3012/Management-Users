@@ -57,7 +57,7 @@ const EditUser = (props: any) => {
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               {...register("username")}
               placeholder="Enter username"
@@ -68,7 +68,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.username?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               {...register("address")}
               placeholder="Enter address"
@@ -78,7 +78,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.address?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="date"
               {...register("birthday")}
               placeholder="Enter birthday"
@@ -88,7 +88,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.birthday?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="email"
               {...register("email")}
               placeholder="Enter email"
@@ -98,7 +98,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.email?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               {...register("phone")}
               placeholder="Enter phone number"
