@@ -9,12 +9,6 @@ import { IValues } from "../../../shared/constants";
 import axios from "axios";
 import "./index.css";
 
-export interface IFormState {
-  [key: string]: any;
-  values: IValues[];
-  submitSuccess: boolean;
-  loading: boolean;
-}
 const defaultValues: IValues = {
   id: "",
   username: "",
