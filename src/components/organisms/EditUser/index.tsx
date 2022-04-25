@@ -43,7 +43,6 @@ const EditUser = (props: any) => {
   };
 
   const onSubmit = async(data: IValues) => {
-    console.log(data)
     await axios
       .put(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id, data)
       .then((data) => {
