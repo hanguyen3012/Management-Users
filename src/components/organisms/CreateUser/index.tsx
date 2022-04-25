@@ -52,7 +52,7 @@ const CreateUser: React.FC = () => {
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <Input
+            <input
               type="text"
               placeholder="Enter username"
               {...register("username")}
