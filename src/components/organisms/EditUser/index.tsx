@@ -117,12 +117,10 @@ const EditUser = (props: any) => {
                 onSubmitFormLogin={() => reset()}
               />
             </Link>
-            <Button
+            <button
               className="btn-submit"
               type="submit"
-              button="Submit"
-              // onSubmitFormLogin={handleSubmit}
-            />
+            >Submit</button>
           </div>
         </form>
       </div>
