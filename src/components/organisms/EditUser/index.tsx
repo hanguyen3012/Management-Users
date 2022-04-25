@@ -2,16 +2,17 @@ import Input from "../../atoms/Input";
 import Button from "../../atoms/Button";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-// import "./index.css";
+import { IValues } from "../../../shared/constants";
+
 import axios from "axios";
-export interface IValues {
-  id: string;
-  username: string;
-  birthday: string;
-  email: string;
-  phone: string;
-  address: string;
-}
+// export interface IValues {
+//   id: string;
+//   username: string;
+//   birthday: string;
+//   email: string;
+//   phone: string;
+//   address: string;
+// }
 const EditUser = (props: any) => {
   const [data, setData] = useState({} as IValues);
 
@@ -39,18 +40,11 @@ const EditUser = (props: any) => {
 
   const handleSubmit = async (event: any) => {
     event.persist();
-    try {
-      await axios
-        .put(
-          `https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id,
-          data
-        )
-        .then((data) => {
-          navigate("/");
-        });
-    } catch (error) {
-      console.log(error);
-    }
+    await axios
+      .put(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id, data)
+      .then((data) => {
+        navigate("/");
+      });
   };
   return (
     <div className="container">
