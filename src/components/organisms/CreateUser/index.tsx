@@ -39,11 +39,12 @@ const CreateUser: React.FC = () => {
     resolver: yupResolver(userSchema),
   });
 
-  const onSubmit = (data: IValues) => {
-    axios
+  const onSubmit = async(data: IValues) => {
+    await axios
       .post(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users`, data)
       .then((data) => [navigate("/")]);
   };
+
   return (
     <div className="container">
       <div className="add-form">
@@ -51,7 +52,7 @@ const CreateUser: React.FC = () => {
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <input
+            <Input
               type="text"
               placeholder="Enter username"
               {...register("username")}

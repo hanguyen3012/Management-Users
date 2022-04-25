@@ -1,5 +1,3 @@
-import { yupResolver } from "@hookform/resolvers/yup";
-import { useForm } from "react-hook-form";
 import * as yup from "yup";
 const userSchema = yup.object().shape({
     username: yup.string().required("Username is required please !"),

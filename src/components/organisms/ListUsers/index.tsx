@@ -36,6 +36,7 @@ const Table = (props: any) => {
         getUsers();
       });
   };
+
   return (
     <div>
       <button className="btn-add">
