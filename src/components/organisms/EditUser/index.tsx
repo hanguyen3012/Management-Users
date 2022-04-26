@@ -1,12 +1,21 @@
-import Input from "../../atoms/Input";
+// import Input from "../../atoms/Input";
 import Button from "../../atoms/Button";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { IValues } from "../../../shared/constants";
+// import { IValues } from "../../../shared/constants";
 import userSchema from "../../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+
+export interface IValues {
+  id: number;
+  username: string;
+  birthday: string;
+  email: string;
+  phone: string;
+  address: string;
+}
 
 const EditUser = (props: any) => {
   const [data, setData] = useState({} as IValues);
@@ -40,6 +49,7 @@ const EditUser = (props: any) => {
       ...data,
       [event.target.name]: event.target.value,
     }));
+    console.log(data)
   };
 
   const onSubmit = async(data: IValues) => {
@@ -57,7 +67,7 @@ const EditUser = (props: any) => {
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <Input
+            <input
               type="text"
               {...register("username")}
               placeholder="Enter username"
@@ -68,7 +78,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.username?.message}</div>
           </div>
           <div className="form-group">
-            <Input
+            <input
               type="text"
               {...register("address")}
               placeholder="Enter address"
@@ -78,7 +88,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.address?.message}</div>
           </div>
           <div className="form-group">
-            <Input
+            <input
               type="date"
               {...register("birthday")}
               placeholder="Enter birthday"
@@ -88,7 +98,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.birthday?.message}</div>
           </div>
           <div className="form-group">
-            <Input
+            <input
               type="email"
               {...register("email")}
               placeholder="Enter email"
@@ -98,7 +108,7 @@ const EditUser = (props: any) => {
             <div className="invalid-feedback">{errors.email?.message}</div>
           </div>
           <div className="form-group">
-            <Input
+            <input
               type="text"
               {...register("phone")}
               placeholder="Enter phone number"

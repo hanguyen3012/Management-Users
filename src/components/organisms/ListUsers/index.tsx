@@ -6,7 +6,16 @@ import Button from "../../atoms/Button";
 import RowTitle from "../../molecules/UserRow/RowTitle";
 import Anchor from "../../atoms/Anchor";
 import { Link } from "react-router-dom";
-import { IValues } from "../../../shared/constants";
+// import { IValues } from "../../../shared/constants";
+
+export interface IValues {
+  id: number;
+  username: string;
+  birthday: string;
+  email: string;
+  phone: string;
+  address: string;
+}
 
 const Table = (props: any) => {
   const [data, setData] = useState([] as IValues[]);

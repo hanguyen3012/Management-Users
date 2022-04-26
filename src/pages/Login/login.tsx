@@ -1,19 +1,22 @@
-import Input from "../../components/atoms/Input";
+// import Input from "../../components/atoms/Input";
 import Button from "../../components/atoms/Button";
 import { useNavigate, Link } from "react-router-dom";
 import userSchema from "../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./login.css";
 import axios from "axios";
 export interface IValues {
   email: string;
   password: string;
 }
-const Login: React.FC = () => {
+const Login = React.forwardRef((props:any, ref: any)=>{
+  const input = React.useRef<HTMLInputElement>(null);
   const [data, setData] = useState({} as IValues);
   const [data1, setData1] = useState({} as IValues);
+
+ 
   const navigate = useNavigate();
   const handleChange = (event: any) => {
     event.persist();
@@ -27,7 +30,7 @@ const Login: React.FC = () => {
   const {
     register,
     handleSubmit,
-    reset,
+    // reset,
     formState: { errors },
   } = useForm<IValues>({
     resolver: yupResolver(userSchema),
@@ -41,10 +44,14 @@ const Login: React.FC = () => {
   };
 
   useEffect(() => {
+    // console.log(ref.current)
+    // ref.current = data;
     getUsers();
+    
   }, []);
 
   const onSubmit = async (value: IValues) => {
+    console.log(value)
     navigate("/list");
   };
   return (
@@ -55,6 +62,7 @@ const Login: React.FC = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-container">
               <input
+                // ref={ref}
                 type="email"
                 {...register("email")}
                 placeholder="Enter your email"
@@ -85,5 +93,5 @@ const Login: React.FC = () => {
       </div>
     </div>
   );
-};
+});
 export default Login;
