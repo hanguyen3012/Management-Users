@@ -54,8 +54,7 @@ const CreateUser: React.FC = (props: any) => {
     resolver: yupResolver(userSchema),
   });
 
-  const onSubmit = async (data: IValues, event: any) => {
-    event.persist();
+  const onSubmit = async (data: IValues) => {
     return await axios
       .post(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users`, data)
       .then((data) => [navigate("/")]);
@@ -65,15 +64,16 @@ const CreateUser: React.FC = (props: any) => {
       <div className="add-form">
         <h2>Add new user</h2>
         <hr />
-        <form onSubmit={(event) => handleSubmit(onSubmit)(event)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <FormInput
               placeholder="Enter username"
               name="username"
               type="text"
               control="control"
+              className="form-control mg-b-0 width-190 height-30 font-size-8 text-normal"
               errors={errors}
-              onChange={handleChange}
+              // onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -82,8 +82,9 @@ const CreateUser: React.FC = (props: any) => {
               name="address"
               placeholder="Enter address"
               control="control"
+              className="form-control mg-b-0 width-190 height-30 font-size-8 text-normal"
               errors={errors}
-              onChange={handleChange}
+              // onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -92,8 +93,9 @@ const CreateUser: React.FC = (props: any) => {
               name="birthday"
               control="control"
               errors={errors}
+              className="form-control mg-b-0 width-190 height-30 font-size-8 text-normal"
               placeholder="Enter birthday"
-              onChange={handleChange}
+              // onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -102,8 +104,9 @@ const CreateUser: React.FC = (props: any) => {
               name="email"
               control="control"
               errors={errors}
+              className="form-control mg-b-0 width-190 height-30 font-size-8 text-normal"
               placeholder="Enter email"
-              onChange={handleChange}
+              // onChange={handleChange}
             />
           </div>
           <div className="form-group">
@@ -112,8 +115,9 @@ const CreateUser: React.FC = (props: any) => {
               control="control"
               name="phone"
               errors={errors}
+              className="form-control mg-b-0 width-190 height-30 font-size-8 text-normal"
               placeholder="Enter phone number"
-              onChange={handleChange}
+              // onChange={handleChange}
 
             />
           </div>

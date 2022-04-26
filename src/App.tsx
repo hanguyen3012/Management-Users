@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateUser from "./components/organisms/CreateUser/index";
 import EditUser from "./components/organisms/EditUser/index";
 import Login from "./pages/Login/login";
+import React from 'react';
+import ReactDOM from 'react-dom';
 const App: React.FC = () => {
   return (
     <BrowserRouter>

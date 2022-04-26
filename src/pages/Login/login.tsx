@@ -20,7 +20,7 @@ const Login = (props: any) => {
   // const dispatch = useDispatch();
   const [data, setData] = useState({})
   const navigate = useNavigate();
-  const { error } = props;
+  // const { error } = props;
 
 
 
@@ -78,7 +78,7 @@ const Login = (props: any) => {
             </div>
             <div className="button-container">
               <button type="submit" className="btn-login">Login</button>
-              {error.isError && <div className="text-danger width-per-100 font-size-9">{t(`error_message:${error?.errorCode}`)}</div>}
+             
             </div>
           </form>
         </div>
@@ -86,7 +86,7 @@ const Login = (props: any) => {
     </div>
   );
 };
-const mapStateToProps = (state: any) => ({
-  error: state.authReducer.error,
-});
-export default connect(mapStateToProps, null)(Login);
+// const mapStateToProps = (state: any) => ({
+//   error: state.authReducer.error,
+// });
+export default (Login);

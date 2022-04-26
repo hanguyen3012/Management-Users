@@ -7,6 +7,7 @@ import userSchema from "../../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { FormInput } from "../../atoms/Input"
 
 export interface IValues {
   id: number;
@@ -38,6 +39,7 @@ const EditUser = (props: any) => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<IValues>({
     resolver: yupResolver(userSchema),
@@ -67,55 +69,60 @@ const EditUser = (props: any) => {
         <hr />
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <input
+            <FormInput
               type="text"
               {...register("username")}
               placeholder="Enter username"
               defaultValue={data.username}
               onChange={handleChange}
+              control="control"
               className={`form-control ${errors.username? "is-invalid" : ""}`}
+              errors={errors}
             />
-            <div className="invalid-feedback">{errors.username?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <FormInput
               type="text"
               {...register("address")}
               placeholder="Enter address"
               defaultValue={data.address}
+              control="control"
               onChange={handleChange}
+              errors={errors}
             />
-            <div className="invalid-feedback">{errors.address?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <FormInput
               type="date"
               {...register("birthday")}
               placeholder="Enter birthday"
               defaultValue={data.birthday}
+              control="control"
               onChange={handleChange}
+              errors={errors}
             />
-            <div className="invalid-feedback">{errors.birthday?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <FormInput
               type="email"
               {...register("email")}
               placeholder="Enter email"
               defaultValue={data.email}
+              control="control"
               onChange={handleChange}
+              errors={errors}
             />
-            <div className="invalid-feedback">{errors.email?.message}</div>
           </div>
           <div className="form-group">
-            <input
+            <FormInput
               type="text"
               {...register("phone")}
               placeholder="Enter phone number"
               defaultValue={data.phone}
+              control="control"
               onChange={handleChange}
+              errors={errors}
             />
-            <div className="invalid-feedback">{errors.phone?.message}</div>
           </div>
           <div className="form-btn">
             <Link to={`/`}>
