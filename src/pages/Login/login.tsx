@@ -1,38 +1,34 @@
-// import Input from "../../components/atoms/Input";
+import { FormInput } from "../../components/atoms/Input"
 import Button from "../../components/atoms/Button";
 import { useNavigate, Link } from "react-router-dom";
 import userSchema from "../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { connect, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from 'react-i18next';
+import * as yup from 'yup';
 import "./login.css";
 import axios from "axios";
-export interface IValues {
+interface IFormInputs {
   email: string;
   password: string;
 }
-const Login = React.forwardRef((props:any, ref: any)=>{
-  const input = React.useRef<HTMLInputElement>(null);
-  const [data, setData] = useState({} as IValues);
-  const [data1, setData1] = useState({} as IValues);
 
- 
+const Login = (props: any) => {
+  const [t] = useTranslation();
+  // const dispatch = useDispatch();
+  const [data, setData] = useState({})
   const navigate = useNavigate();
-  const handleChange = (event: any) => {
-    event.persist();
+  const { error } = props;
 
-    setData((data) => ({
-      ...data,
-      [event.target.name]: event.target.value,
-    }));
-  };
+
 
   const {
-    register,
+    control,
     handleSubmit,
-    // reset,
     formState: { errors },
-  } = useForm<IValues>({
+  } = useForm<IFormInputs>({
     resolver: yupResolver(userSchema),
   });
 
@@ -40,17 +36,17 @@ const Login = React.forwardRef((props:any, ref: any)=>{
     const users = await axios.get(
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/account"
     );
-    setData1(users.data);
+    setData(users.data);
   };
 
   useEffect(() => {
     // console.log(ref.current)
     // ref.current = data;
     getUsers();
-    
+
   }, []);
 
-  const onSubmit = async (value: IValues) => {
+  const onSubmit = async (value: IFormInputs) => {
     console.log(value)
     navigate("/list");
   };
@@ -61,37 +57,36 @@ const Login = React.forwardRef((props:any, ref: any)=>{
         <div className="form">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-container">
-              <input
-                // ref={ref}
+              <FormInput
+                control={control}
+                name="email"
                 type="email"
-                {...register("email")}
-                placeholder="Enter your email"
-                defaultValue=""
-                onChange={handleChange}
-                className={`form-control ${errors.email ? "is-invalid" : ""}`}
+                className="form-control width-190 height-30 font-size-8 text-normal "
+                placeholder={t('auth:email')}
+                errors={errors}
               />
-              <div className="invalid-feedback">{errors.email?.message}</div>
             </div>
             <div className="input-container">
-              <input
+              <FormInput
+                control={control}
+                name="password"
                 type="password"
-                {...register("password")}
-                placeholder="Enter your password"
-                defaultValue=""
-                onChange={handleChange}
-                className={`form-control ${
-                  errors.password ? "is-invalid" : ""
-                }`}
+                className="form-control mg-b-0 width-190 height-30 font-size-8 text-normal"
+                placeholder={t('auth:password')}
+                errors={errors}
               />
-              <div className="invalid-feedback">{errors.password?.message}</div>
             </div>
             <div className="button-container">
               <button type="submit" className="btn-login">Login</button>
+              {error.isError && <div className="text-danger width-per-100 font-size-9">{t(`error_message:${error?.errorCode}`)}</div>}
             </div>
           </form>
         </div>
       </div>
     </div>
   );
+};
+const mapStateToProps = (state: any) => ({
+  error: state.authReducer.error,
 });
-export default Login;
+export default connect(mapStateToProps, null)(Login);
