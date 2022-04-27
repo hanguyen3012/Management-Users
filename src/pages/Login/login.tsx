@@ -52,10 +52,6 @@ const Login = (props: any) => {
   }, []);
 
   const onSubmit = (value: IFormInputs) => {
-    console.log(value.email)
-    console.log(value.password)
-    console.log(data.email)
-    console.log(data.password)
     if (value.email === data.email && value.password === data.password) {
       navigate("/");
     } else {
