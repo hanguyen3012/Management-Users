@@ -12,7 +12,7 @@ import "./login.css";
 import axios from "axios";
 interface IFormInputs {
   email: string;
-  password: number;
+  password: string;
 }
 
 const Login = (props: any) => {
@@ -35,12 +35,28 @@ const Login = (props: any) => {
     resolver: yupResolver(userSchema),
   });
 
+  const getUsers = async () => {
+
+    const users = await axios.get(
+      "https://625fae6c53a42eaa07f8d2f5.mockapi.io/account/1"
+    );
+    setData(users.data);
+  };
+
+  useEffect(() => {
+    try {
+      getUsers();
+    } catch (error) {
+      console.log(error)
+    }
+  }, []);
 
   const onSubmit = (value: IFormInputs) => {
     console.log(value.email)
-    console.log(data)
+    console.log(value.password)
     console.log(data.email)
-    if (value.email === "ha@gmail.com" && value.password === 123) {
+    console.log(data.password)
+    if (value.email === data.email && value.password === data.password) {
       navigate("/");
     } else {
       alert("You must enter a valid account!")
