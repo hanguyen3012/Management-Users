@@ -1,7 +1,7 @@
-import { FormInput } from "../../components/atoms/Input"
+import { FormInput } from "../../components/atoms/InputForm"
 import Button from "../../components/atoms/Button";
 import { useNavigate, Link } from "react-router-dom";
-import userSchema from "../../Validations";
+// import userSchema from "../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { connect, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
@@ -12,17 +12,20 @@ import "./login.css";
 import axios from "axios";
 interface IFormInputs {
   email: string;
-  password: string;
+  password: number;
 }
 
 const Login = (props: any) => {
   const [t] = useTranslation();
-  // const dispatch = useDispatch();
-  const [data, setData] = useState({})
+  const dispatch = useDispatch();
+  const [data, setData] = useState({} as IFormInputs)
   const navigate = useNavigate();
   // const { error } = props;
 
-
+  const userSchema = yup.object().shape({
+    email: yup.string().email(t('auth:email_is_required')).required(t('auth:password_is_required')),
+    password: yup.string().required(t('auth:password_is_required')),
+  });
 
   const {
     control,
@@ -32,23 +35,16 @@ const Login = (props: any) => {
     resolver: yupResolver(userSchema),
   });
 
-  const getUsers = async () => {
-    const users = await axios.get(
-      "https://625fae6c53a42eaa07f8d2f5.mockapi.io/account"
-    );
-    setData(users.data);
-  };
 
-  useEffect(() => {
-    // console.log(ref.current)
-    // ref.current = data;
-    getUsers();
-
-  }, []);
-
-  const onSubmit = async (value: IFormInputs) => {
-    console.log(value)
-    navigate("/list");
+  const onSubmit = (value: IFormInputs) => {
+    console.log(value.email)
+    console.log(data)
+    console.log(data.email)
+    if (value.email === "ha@gmail.com" && value.password === 123) {
+      navigate("/");
+    } else {
+      alert("You must enter a valid account!")
+    }
   };
   return (
     <div className="app">
@@ -78,7 +74,7 @@ const Login = (props: any) => {
             </div>
             <div className="button-container">
               <button type="submit" className="btn-login">Login</button>
-             
+
             </div>
           </form>
         </div>

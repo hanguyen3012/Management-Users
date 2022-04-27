@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import React from "react";
 // import  "./RowTitle.css";
 // import logo from '../../assets/images/logo.PNG';
 const RowTitle = (props: any) => {
