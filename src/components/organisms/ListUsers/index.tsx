@@ -7,6 +7,7 @@ import { connect, useDispatch } from 'react-redux';
 import RowTitle from "../../molecules/UserRow/RowTitle";
 import Anchor from "../../atoms/Anchor";
 import { Link } from "react-router-dom";
+import PageLoader from "../../../pages/PageLoad/pageLoad";
 import { hideLoader, showLoader } from "../../../redux/actions/application";
 
 export interface IValues {
@@ -45,6 +46,7 @@ const Table = (props: any) => {
 
   return (
     <div>
+      <PageLoader />
       <button className="btn-add">
         <Anchor href="./create" text="Add" />
       </button>

@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { FormInput } from "../../atoms/InputForm"
 import { showLoader } from "../../../redux/actions/application";
 import { hideLoader } from "../../../redux/actions/application";
+import PageLoader from "../../../pages/PageLoad/pageLoad"
 import "./index.css";
 import axios from "axios";
 
@@ -54,6 +55,7 @@ const CreateUser: React.FC = (props: any) => {
   };
   return (
     <div className="container">
+      <PageLoader />
       <div className="add-form">
         <h2>Add new user</h2>
         <hr />

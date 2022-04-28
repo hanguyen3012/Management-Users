@@ -9,7 +9,8 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { showLoader } from "../../../redux/actions/application";
 import { hideLoader } from "../../../redux/actions/application";
-import { FormInput } from "../../atoms/InputForm"
+import { FormInput } from "../../atoms/InputForm";
+import PageLoader from "../../../pages/PageLoad/pageLoad"
 
 interface IFormInputs {
   id: string;
@@ -57,7 +58,6 @@ const EditUser = (props: any) => {
 
   });
 
-
   const onSubmit = async (data: IFormInputs) => {
     dispatch(showLoader())
     await axios
@@ -71,6 +71,7 @@ const EditUser = (props: any) => {
 
   return (
     <div className="container">
+      <PageLoader />
       <div className="add-form">
         <h2>Edit user</h2>
         <hr />

@@ -2,19 +2,11 @@ import { Action } from "../../types/action"
 
 const initialState = {
     loading: false,
-    email: '',
-    // data: {},
 };
 
 const reducer = (state = initialState, action: Action) => {
 
     switch (action.type) {
-        case "USERS_DATA":
-            return {
-                ...state,
-                // data: { ...action.data },
-                loading: true,
-            };
         case "SHOW_LOADER":
             return {
                 ...state,

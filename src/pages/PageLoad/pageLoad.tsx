@@ -5,8 +5,9 @@ const PageLoader = (props: any) => {
 
 
     const { loading } = props;
+    console.log(loading)
 
-    if (!loading) return null;
+    if (!loading) { return null; }
 
     return (
         <div className="loading-container">
