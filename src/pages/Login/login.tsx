@@ -10,6 +10,8 @@ import * as yup from 'yup';
 import "./login.css";
 import axios from "axios";
 import { showLoader } from "../../redux/actions/application";
+import { hideLoader } from "../../redux/actions/application";
+import PageLoader from "../PageLoad/pageLoad"
 interface IFormInputs {
   email: string;
   password: string;
@@ -50,7 +52,9 @@ const Login = (props: any, loading: any) => {
   }, []);
 
   const onSubmit = (value: IFormInputs) => {
+    dispatch(showLoader())
     if (value.email === data.email && value.password === data.password) {
+      dispatch(hideLoader());
       navigate("/");
     } else {
       alert("You must enter a valid account!")
@@ -59,6 +63,7 @@ const Login = (props: any, loading: any) => {
 
   return (
     <div className="app">
+      <PageLoader />
       <div className="login-form">
         <div className="title">Sign In</div>
         <div className="form">
