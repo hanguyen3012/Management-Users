@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./index.css";
 import Button from "../../atoms/Button";
+import { connect, useDispatch } from 'react-redux';
 import RowTitle from "../../molecules/UserRow/RowTitle";
 import Anchor from "../../atoms/Anchor";
 import { Link } from "react-router-dom";
-import { connect, useDispatch } from 'react-redux';
 import { hideLoader, showLoader } from "../../../redux/actions/application";
 
 export interface IValues {
@@ -78,5 +78,5 @@ const Table = (props: any) => {
     </div>
   );
 };
-
-export default Table;
+const mapStateToProps = (state: any) => ({})
+export default connect(mapStateToProps)(Table);

@@ -36,7 +36,6 @@ const Login = (props: any, loading: any) => {
   });
 
   const getUsers = async () => {
-    dispatch(showLoader())
     const users = await axios.get(
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/account/1"
     );
@@ -54,7 +53,6 @@ const Login = (props: any, loading: any) => {
   }, []);
 
   const onSubmit = (value: IFormInputs) => {
-    // return dispatch =>{
     if (value.email === data.email && value.password === data.password) {
       navigate("/");
     } else {
@@ -98,5 +96,5 @@ const Login = (props: any, loading: any) => {
     </div>
   );
 };
-
+const mapStateToProps = (state: any) => ({})
 export default (Login);

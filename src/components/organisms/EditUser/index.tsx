@@ -2,7 +2,7 @@ import Button from "../../atoms/Button";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -26,6 +26,7 @@ const EditUser = (props: any) => {
   const { id } = useParams();
   const [t] = useTranslation();
   const navigate = useNavigate();
+
   const schema = yup.object().shape({
     email: yup.string().email(t('auth:email_is_required')).required(t('auth:password_is_required')),
     username: yup.string().required(t('auth:username_is_required')),
@@ -41,12 +42,12 @@ const EditUser = (props: any) => {
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id
     );
     setData(users.data);
-
   };
 
   useEffect(() => {
-    getUsers();
-  }, []);
+    console.log(data)
+    getUsers()
+  }, [])
 
   const {
     control,
@@ -150,4 +151,5 @@ const EditUser = (props: any) => {
     </div>
   );
 };
-export default EditUser;
+const mapStateToProps = (state: any) => ({})
+export default connect(mapStateToProps)(EditUser);

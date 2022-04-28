@@ -19,7 +19,7 @@ const PageLoader = (props: any) => {
 
 
 const mapStateToProps = (state: any) => ({
-    loading: state.authReducer.loading,
+    loading: state.index.loading,
 });
 
 export default connect(mapStateToProps)(PageLoader);

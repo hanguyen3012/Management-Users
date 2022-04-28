@@ -5,14 +5,14 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './i18n';
 import { Provider } from 'react-redux';
-import store from './store';
+import configureStore from "../src/redux/store"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
+    <Provider store={configureStore()}>
       <App />
     </Provider>
   </React.StrictMode>
