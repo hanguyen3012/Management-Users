@@ -6,7 +6,8 @@ import Button from "../../atoms/Button";
 import RowTitle from "../../molecules/UserRow/RowTitle";
 import Anchor from "../../atoms/Anchor";
 import { Link } from "react-router-dom";
-// import { IValues } from "../../../shared/constants";
+import { connect, useDispatch } from 'react-redux';
+import { hideLoader, showLoader } from "../../../redux/actions/application";
 
 export interface IValues {
   id: number;
@@ -19,7 +20,7 @@ export interface IValues {
 
 const Table = (props: any) => {
   const [data, setData] = useState([] as IValues[]);
-
+  const dispatch = useDispatch();
   const getUsers = async () => {
     const users = await axios.get(
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users"
@@ -33,9 +34,11 @@ const Table = (props: any) => {
 
   const deleteUser = async (e: any, id: number) => {
     e.persist();
+    dispatch(showLoader())
     await axios
       .delete("https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id)
       .then((data_) => {
+        dispatch(hideLoader());
         getUsers();
       });
   };

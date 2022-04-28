@@ -1,7 +1,6 @@
 import { FormInput } from "../../components/atoms/InputForm"
 import Button from "../../components/atoms/Button";
 import { useNavigate, Link } from "react-router-dom";
-// import userSchema from "../../Validations";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { connect, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
@@ -10,17 +9,18 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import "./login.css";
 import axios from "axios";
+import { showLoader } from "../../redux/actions/application";
+import { Payload } from "../../types/action";
 interface IFormInputs {
   email: string;
   password: string;
 }
 
-const Login = (props: any) => {
+const Login = (props: any, loading: any) => {
   const [t] = useTranslation();
   const dispatch = useDispatch();
   const [data, setData] = useState({} as IFormInputs)
   const navigate = useNavigate();
-  // const { error } = props;
 
   const userSchema = yup.object().shape({
     email: yup.string().email(t('auth:email_is_required')).required(t('auth:password_is_required')),
@@ -36,7 +36,7 @@ const Login = (props: any) => {
   });
 
   const getUsers = async () => {
-
+    dispatch(showLoader())
     const users = await axios.get(
       "https://625fae6c53a42eaa07f8d2f5.mockapi.io/account/1"
     );
@@ -45,18 +45,22 @@ const Login = (props: any) => {
 
   useEffect(() => {
     try {
+      dispatch(showLoader())
       getUsers();
+
     } catch (error) {
       console.log(error)
     }
   }, []);
 
   const onSubmit = (value: IFormInputs) => {
+    // return dispatch =>{
     if (value.email === data.email && value.password === data.password) {
       navigate("/");
     } else {
       alert("You must enter a valid account!")
     }
+    // };
   };
   return (
     <div className="app">
@@ -94,7 +98,5 @@ const Login = (props: any) => {
     </div>
   );
 };
-// const mapStateToProps = (state: any) => ({
-//   error: state.authReducer.error,
-// });
+
 export default (Login);

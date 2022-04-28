@@ -9,15 +9,15 @@ import ReactDOM from 'react-dom';
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-    <div className="max-w-screen-md mx-auto pt-20">
-      <Routes>
-        <Route path="/" element={<ListUsers/>}></Route>
-        <Route path="/create" element={<CreateUser/>} />
-        <Route path="/login" element={<Login/>} />
-        <Route path="/edit/:id" element={<EditUser/>} />
-      </Routes>
-    </div>
-  </BrowserRouter>
+      <div className="max-w-screen-md mx-auto pt-20">
+        <Routes>
+          <Route path="/" element={<ListUsers />}></Route>
+          <Route path="/create" element={<CreateUser />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/edit/:id" element={<EditUser />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
 
