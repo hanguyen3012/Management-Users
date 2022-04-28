@@ -26,7 +26,6 @@ const EditUser = (props: any) => {
   const { id } = useParams();
   const [t] = useTranslation();
   const navigate = useNavigate();
-
   const schema = yup.object().shape({
     email: yup.string().email(t('auth:email_is_required')).required(t('auth:password_is_required')),
     username: yup.string().required(t('auth:username_is_required')),
@@ -37,17 +36,16 @@ const EditUser = (props: any) => {
       .required(t('auth:phone_is_required'))
   });
 
-  const getUsers = async () => {
-    const users = await axios.get(
-      "https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id
-    );
-    setData(users.data);
-  };
-
   useEffect(() => {
-    console.log(data)
-    getUsers()
-  }, [])
+    function getFetchUrl() {
+      return 'https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/' + id;
+    }
+    async function fetchData() {
+      const result = await axios(getFetchUrl());
+      setData(result.data);
+    }
+    fetchData();
+  }, [id])
 
   const {
     control,

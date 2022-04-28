@@ -10,7 +10,6 @@ import * as yup from 'yup';
 import "./login.css";
 import axios from "axios";
 import { showLoader } from "../../redux/actions/application";
-import { Payload } from "../../types/action";
 interface IFormInputs {
   email: string;
   password: string;
@@ -44,9 +43,7 @@ const Login = (props: any, loading: any) => {
 
   useEffect(() => {
     try {
-      dispatch(showLoader())
       getUsers();
-
     } catch (error) {
       console.log(error)
     }
@@ -58,8 +55,8 @@ const Login = (props: any, loading: any) => {
     } else {
       alert("You must enter a valid account!")
     }
-    // };
   };
+
   return (
     <div className="app">
       <div className="login-form">
@@ -88,7 +85,6 @@ const Login = (props: any, loading: any) => {
             </div>
             <div className="button-container">
               <button type="submit" className="btn-login">Login</button>
-
             </div>
           </form>
         </div>
@@ -97,4 +93,4 @@ const Login = (props: any, loading: any) => {
   );
 };
 const mapStateToProps = (state: any) => ({})
-export default (Login);
+export default connect(mapStateToProps)(Login);
