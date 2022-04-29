@@ -6,9 +6,8 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import { FormInput } from "../../atoms/InputForm"
-import { showLoader } from "../../../redux/actions/application";
-import { hideLoader } from "../../../redux/actions/application";
-import PageLoader from "../../../pages/PageLoad/pageLoad"
+import { hideLoader, showLoader } from "../../../redux/actions/index";
+import PageLoader from "../../../pages/PageLoad"
 import "./index.css";
 import axios from "axios";
 
@@ -42,12 +41,10 @@ const CreateUser: React.FC = (props: any) => {
   });
 
   const onSubmit = async (data: IFormInputs) => {
-    console.log(data)
     dispatch(showLoader())
     return await axios
       .post(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users`, data)
       .then(data => {
-        console.log(data);
         dispatch(hideLoader());
         navigate("/")
       });

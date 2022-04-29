@@ -1,16 +1,15 @@
 import Button from "../../atoms/Button";
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
-import { connect, useDispatch } from 'react-redux';
-import * as yup from 'yup';
+import { useTranslation } from "react-i18next";
+import { connect, useDispatch } from "react-redux";
+import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { showLoader } from "../../../redux/actions/application";
-import { hideLoader } from "../../../redux/actions/application";
+import { hideLoader, showLoader } from "../../../redux/actions/index";
 import { FormInput } from "../../atoms/InputForm";
-import PageLoader from "../../../pages/PageLoad/pageLoad"
+import PageLoader from "../../../pages/PageLoad";
 
 interface IFormInputs {
   id: string;
@@ -28,25 +27,26 @@ const EditUser = (props: any) => {
   const [t] = useTranslation();
   const navigate = useNavigate();
   const schema = yup.object().shape({
-    email: yup.string().email(t('auth:email_is_required')).required(t('auth:password_is_required')),
-    username: yup.string().required(t('auth:username_is_required')),
-    address: yup.string().required(t('auth:address_is_required')),
-    birthday: yup.string().required(t('auth:birthay_is_required')),
-    phone: yup
+    email: yup
       .string()
-      .required(t('auth:phone_is_required'))
+      .email(t("auth:email_is_required"))
+      .required(t("auth:password_is_required")),
+    username: yup.string().required(t("auth:username_is_required")),
+    address: yup.string().required(t("auth:address_is_required")),
+    birthday: yup.string().required(t("auth:birthay_is_required")),
+    phone: yup.string().required(t("auth:phone_is_required")),
   });
 
   useEffect(() => {
     function getFetchUrl() {
-      return 'https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/' + id;
+      return "https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id;
     }
     async function fetchData() {
       const result = await axios(getFetchUrl());
       setData(result.data);
     }
     fetchData();
-  }, [id])
+  }, [id]);
 
   const {
     control,
@@ -55,17 +55,15 @@ const EditUser = (props: any) => {
     formState: { errors },
   } = useForm<IFormInputs>({
     resolver: yupResolver(schema),
-
   });
 
   const onSubmit = async (data: IFormInputs) => {
-    dispatch(showLoader())
+    dispatch(showLoader());
     await axios
       .put(`https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/` + id, data)
       .then((data) => {
-        console.log(data);
         dispatch(hideLoader());
-        navigate("/")
+        navigate("/");
       });
   };
 
@@ -140,15 +138,14 @@ const EditUser = (props: any) => {
                 onSubmitFormLogin={() => reset()}
               />
             </Link>
-            <button
-              className="btn-submit"
-              type="submit"
-            >Submit</button>
+            <button className="btn-submit" type="submit">
+              Submit
+            </button>
           </div>
         </form>
       </div>
     </div>
   );
 };
-const mapStateToProps = (state: any) => ({})
+const mapStateToProps = (state: any) => ({});
 export default connect(mapStateToProps)(EditUser);

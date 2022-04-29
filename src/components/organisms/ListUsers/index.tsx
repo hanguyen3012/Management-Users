@@ -3,12 +3,12 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./index.css";
 import Button from "../../atoms/Button";
-import { connect, useDispatch } from 'react-redux';
+import { connect, useDispatch } from "react-redux";
 import RowTitle from "../../molecules/UserRow/RowTitle";
 import Anchor from "../../atoms/Anchor";
 import { Link } from "react-router-dom";
-import PageLoader from "../../../pages/PageLoad/pageLoad";
-import { hideLoader, showLoader } from "../../../redux/actions/application";
+import PageLoader from "../../../pages/PageLoad";
+import { hideLoader, showLoader } from "../../../redux/actions/index";
 
 export interface IValues {
   id: number;
@@ -35,7 +35,7 @@ const Table = (props: any) => {
 
   const deleteUser = async (e: any, id: number) => {
     e.persist();
-    dispatch(showLoader())
+    dispatch(showLoader());
     await axios
       .delete("https://625fae6c53a42eaa07f8d2f5.mockapi.io/mana-users/" + id)
       .then((data_) => {
@@ -80,5 +80,5 @@ const Table = (props: any) => {
     </div>
   );
 };
-const mapStateToProps = (state: any) => ({})
+const mapStateToProps = (state: any) => ({});
 export default connect(mapStateToProps)(Table);

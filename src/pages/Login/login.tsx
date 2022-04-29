@@ -9,9 +9,8 @@ import { useTranslation } from 'react-i18next';
 import * as yup from 'yup';
 import "./login.css";
 import axios from "axios";
-import { showLoader } from "../../redux/actions/application";
-import { hideLoader } from "../../redux/actions/application";
-import PageLoader from "../PageLoad/pageLoad"
+import { showLoader, hideLoader } from "../../redux/actions/index";
+import PageLoader from "../PageLoad"
 interface IFormInputs {
   email: string;
   password: string;
@@ -44,11 +43,7 @@ const Login = (props: any, loading: any) => {
   };
 
   useEffect(() => {
-    try {
       getUsers();
-    } catch (error) {
-      console.log(error)
-    }
   }, []);
 
   const onSubmit = (value: IFormInputs) => {
