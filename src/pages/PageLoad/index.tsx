@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import loaderImg from "../../assets/images/loaderImg.gif"
+import loaderImg from "../../assets/images/loaderImg.gif";
 import Image from "../../components/atoms/Image";
-import "./index.css"
+import "./index.css";
 const PageLoader = (props: any) => {
   const { loading } = props;
 
@@ -11,11 +11,17 @@ const PageLoader = (props: any) => {
   }
 
   return (
-    <div className="loading-container">   
-      <div className="loader">
-        <Image src={loaderImg} alt="loading" />
-        </div>
-    </div>
+    // <div className="loading-container">
+    //   <div className="loader">
+    //     <Image src={loaderImg} alt="loading" />
+    //   </div>
+    // </div>
+<div id="root">
+  <div className="loader-wrapper">
+    <div className="loader"></div>
+  </div>
+</div>
+    
   );
 };
 
